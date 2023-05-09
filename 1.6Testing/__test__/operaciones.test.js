@@ -71,7 +71,7 @@ describe('Test de la función multiplicar', () => {
 });
 
 /* Escribir una funcion que al pasarle dos numeros:
- -Muestre la multiplicació de los dos numeros */
+ -Muestre la divición de los dos numeros */
 
 describe('Test de la función multiplicar', () => {
     const testCases = [

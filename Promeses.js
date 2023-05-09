@@ -20,7 +20,20 @@ getData()
 
 //Exercici 2
 
+const printMessage = (param, callback) => {
+    if (typeof param === 'string') {
+        callback('El parámetro recibido es un string');
+    } else {
+        callback('El parámetro recibido no es un string');
+    }
+};
+
+printMessage('Hola', console.log);
+printMessage(123, console.log);
+
+
 //Nivell 2
+
 //Exercici 1
 let employees = [{
     id: 1,

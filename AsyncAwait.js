@@ -142,3 +142,10 @@ const sumaNumber = async (x, y, z) => {
 console.log("NIVELL 3")
 EmployeeSalary(23);
 sumaNumber(3, "e", 3)
+
+
+
+module.exports = {
+    EmployeeSalary
+
+}

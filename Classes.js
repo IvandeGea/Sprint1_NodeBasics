@@ -1,3 +1,4 @@
+
 //Nivell 1
 //Exercici 1
 ((a, b) => { console.log(a + b) })(2, 5);
@@ -5,56 +6,81 @@
 
 //Nivell 2
 //Exercici 1
-const edadUsuari = (anys) => {
+const getAge = (years) => {
     return {
-        edad: anys
+        age: years
     };
 }
 //Exercici 2
-
-class Persona {
-    constructor(nom) {
-        this.nom = nom;
+class Person {
+    constructor(name) {
+        this.name = name;
     }
 
     dirNom() {
-        console.log(this.nom);
+        console.log(this.name);
     }
 }
 
 //Nivell 3
 
-function objectCreator() {
-
-    function classeAbstracta() {
-        if (this.constructor === classeAbstracta) {
-            throw new Error("Cannot instantiate abstract class.");
-        }
+//Classe Abstracta
+function Developer(name) {
+    if (this.constructor === Developer) {
+        throw new TypeError("Can't instantiate abstract class!");
     }
-
-    classeAbstracta.prototype.abstractMethod = function () {
-        throw new Error("Abstract method must be implemented.");
-    }
-
-    function ConcreteClass() {
-        classeAbstracta.call(this);
-    }
-
-    ConcreteClass.prototype = Object.create(classeAbstracta.prototype);
-    ConcreteClass.prototype.constructor = ConcreteClass;
-
-    ConcreteClass.prototype.concreteMethod = function () {
-
-    }
-
-    return new ConcreteClass();
+    this.name = name;
 }
 
-var obj1 = objectCreator()
-var obj2 = objectCreator()
+Developer.prototype.getName = function () {
+    return this.name;
+}
 
-console.log(obj1 instanceof ConcreteClass)
-console.log(obj2 instanceof ConcreteClass);
 
-obj1.concreteMethod()
-obj1.abstractMethod()
+//Definim les subclasses que extenen de la classe abstracta
+class Developer {
+    constructor(name, role) {
+        this.name = name;
+        this.role = role;
+    }
+
+    getName() {
+        return this.name;
+    }
+
+    getRole() {
+        return this.role;
+    }
+}
+
+//Creem les subclases  
+class FrontEndDeveloper extends Developer {
+    constructor(name) {
+        super(name, 'Front End Developer');
+    }
+}
+
+class BackEndDeveloper extends Developer {
+    constructor(name) {
+        super(name, 'Back End Developer');
+    }
+}
+//Creem la funcio creeadora d'objectes
+function createDeveloper(type, name) {
+    switch (type) {
+        case 'front-end':
+            return new FrontEndDeveloper(name);
+        case 'back-end':
+            return new BackEndDeveloper(name);
+        default:
+            throw new Error('Invalid developer type!');
+    }
+}
+
+const frontEndDev = createDeveloper('front-end', 'John');
+console.log(frontEndDev.getName());
+console.log(frontEndDev.getRole());
+
+const backEndDev = createDeveloper('back-end', 'Jane');
+console.log(backEndDev.getName());
+console.log(backEndDev.getRole());
