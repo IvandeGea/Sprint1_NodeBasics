@@ -89,3 +89,6 @@ getEmployee(1)
 //
 
 
+module.exports = {
+    getData, getEmployee, getSalary
+}

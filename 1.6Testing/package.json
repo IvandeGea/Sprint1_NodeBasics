@@ -1,0 +1,12 @@
+{
+    "dependencies": {
+        "node": "^20.1.0",
+        "nodemon": "^2.0.22"
+    },
+    "devDependencies": {
+        "jest": "^29.5.0"
+    },
+    "jest": {
+        "testEnviroment": "node"
+    }
+}
