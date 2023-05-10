@@ -141,8 +141,11 @@ const sumaNumber = async (x, y, z) => {
 
 console.log("NIVELL 3")
 EmployeeSalary(23);
-sumaNumber(3, "e", 3)
-
+doubleNumber(4)
+doubleNumber("string")
+doubleNumber(null)
+sumaNumber(3, "3", 3)
+sumaNumber(3, 3, 3)
 
 
 module.exports = {

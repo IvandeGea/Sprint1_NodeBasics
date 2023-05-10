@@ -3,30 +3,35 @@
 
 function getData() {
     return new Promise((resolve, reject) => {
-
-        if (DataTransfer.length === 0) {
-            reject(new Error(`Data is empty`))
+        if (data.length === 0) {
+            reject(new Error('Data is empty'));
+        } else {
+            setTimeout(() => {
+                resolve(data);
+            }, 1000);
         }
-        else setTimeout(() => {
-            resolve(data);
-        }, 1000)
-    })
+    });
 }
 
 getData()
-    .then((response) => { console.log("Todo esta Bien") })
+    .then(() => {
+        console.log('Everything is fine.');
+    })
+    .catch((err) => {
+        console.log(err.message);
+    });
 
-    .catch((err) => { console.log(err.message) })
 
 //Exercici 2
 
 const printMessage = (param, callback) => {
     if (typeof param === 'string') {
-        callback('El parámetro recibido es un string');
+        callback('The parameter received is a string.');
     } else {
-        callback('El parámetro recibido no es un string');
+        callback('The parameter received is not a string.');
     }
 };
+
 
 printMessage('Hola', console.log);
 printMessage(123, console.log);
@@ -63,10 +68,11 @@ const getEmployee = (id) => {
         if (employee) {
             resolve(employee);
         } else {
-            reject(`El ${id} no existeix`);
+            reject(`The ID ${id} does not exist.`);
         }
     });
 };
+
 
 
 //Exercici 2
@@ -77,20 +83,21 @@ const getSalary = (employee) => {
         if (salaryObj) {
             resolve(salaryObj.salary);
         } else {
-            reject(` EXERCICI 2 No s'ha trobat cap salari per a l'empleat amb id ${employee.id}`);
+            reject(`No salary found for employee with ID ${employee.id}.`);
         }
     });
 }
+
 
 //Exercici 3
 
 getEmployee(1)
     .then((employee) => {
-        console.log(`L'empleat amb id ${employee.id} és diu ${employee.name}`);
+        console.log(`The employee with ID ${employee.id} is named ${employee.name}.`);
         return getSalary(employee);
     })
     .then((salary) => {
-        console.log(`EXERCICI 3:El salari és de ${salary} €`);
+        console.log(`EXERCISE 3: The salary is ${salary} €.`);
     })
     .catch((error) => {
         console.error(error.message);

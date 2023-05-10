@@ -40,23 +40,23 @@ pipeline(source, gzip, destination, (err) => {
 //NIVELL 2
 //Exercici 1
 
-// function saludo() {
-//     return console.log("HOLA SOY SetInterval")
-// }
-// setInterval(saludo, 3000)
+function saludo() {
+    return console.log("HOLA SOY SetInterval")
+}
+setInterval(saludo, 3000)
 
 //Exercici 2
 
-// const { execFile } = require('child_process');
-// const path = require('path');
-// const lsPath = path.join(process.env.HOME, '/');
+const { execFile } = require('child_process');
+const path = require('path');
+const lsPath = path.join(process.env.HOME, '/');
 
-// const child = execFile('ls', ['-l', lsPath], (error, stdout, stderr) => {
-//     if (error) {
-//         throw error;
-//     }
-//     console.log(stdout);
-// });
+const child = execFile('ls', ['-l', lsPath], (error, stdout, stderr) => {
+    if (error) {
+        throw error;
+    }
+    console.log(stdout);
+});
 
 //NIvell 3
 
@@ -69,16 +69,19 @@ pipeline(source, gzip, destination, (err) => {
 
 
 //readFileSync torna un buffer que l'hem de transformar a string amb el toString
+function crearArchivoCodificado() {
+    // leer el archivo
+    const data = fs.readFileSync("node.txt", "utf-8");
+    // codificar en hexadecimal
+    const hexData = data.toString("hex");
+    const hexFile = "node_hex.txt";
+    fs.writeFileSync(hexFile, hexData);
 
-//el metodo hec y el base64 esperan una cadena
+    // codificar en base64
+    const base64Data = Buffer.from(data).toString("base64");
+    const base64File = "node_base64.txt";
+    fs.writeFileSync(base64File, base64Data);
 
-// Lee el archivo node.txt
-const data = fs.readFileSync('./node.txt');
-
-// Codifica el archivo a hexadecimal y lo guarda en un nuevo archivo
-const hexData = Buffer.from(data).toString('hex');
-fs.writeFileSync('node-hex.txt', hexData);
-
-// Codifica el archivo a base64 y lo guarda en un nuevo archivo
-const base64Data = Buffer.from(data).toString('base64');
-fs.writeFileSync('node-base64.txt', base64Data);
+    console.log(`\n NIVEL 3 EJERCICIO 1 \n Archivos creados: ${hexFile}, ${base64File}`);
+}
+crearArchivoCodificado();
