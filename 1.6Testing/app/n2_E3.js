@@ -1,27 +1,3 @@
-
-//Nivell 1
-//Exercici 1
-((a, b) => { console.log(a + b) })(2, 5);
-
-
-//Nivell 2
-//Exercici 1
-const getAge = (years) => {
-    return {
-        age: years
-    };
-}
-//Exercici 2
-class Person {
-    constructor(name) {
-        this.name = name;
-    }
-
-    dirNom() {
-        console.log(this.name);
-    }
-}
-
 //Nivell 3
 
 //Classe Abstracta
@@ -77,15 +53,6 @@ function createDeveloper(type, name) {
     }
 }
 
-const frontEndDev = createDeveloper('front-end', 'John');
-console.log(frontEndDev.getName());
-console.log(frontEndDev.getRole());
-
-const backEndDev = createDeveloper('back-end', 'Jane');
-console.log(backEndDev.getName());
-console.log(backEndDev.getRole());
-
-
 module.exports = {
-    createDeveloper, Person
+    Developer, createDeveloper
 }

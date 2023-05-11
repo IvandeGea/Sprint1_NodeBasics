@@ -53,7 +53,7 @@ async function EmployeeSalary(id) {
 
         console.log(`NIVELL 1 EXERCICI 1: L'empleat/da ${employee.name} té un salari de ${salary} €`);
     } catch (error) {
-        console.error(error.message);
+        console.log(error.message);
     }
 }
 
@@ -79,21 +79,13 @@ const getDatos = async () => {
             throw new Error("No existen datos");
         } else {
             await new Promise((resolve) => setTimeout(resolve, 2000));
-            return datos;
+            return console.log(`NIVELL 1 EXERCICI 2:`, datos);
         }
     } catch (error) {
-        console.error(error.message);
+        console.log(error.message);
     }
 };
-
-(async () => {
-    try {
-        const result = await getDatos();
-        console.log(`NIVELL 1 EXERCICI 2: ${result}`);
-    } catch (error) {
-        console.error(error.message);
-    }
-})();
+getDatos()
 
 //Nivell 2
 //Exercici 1
@@ -121,34 +113,29 @@ const sumaNumber = async (x, y, z) => {
         const dobleY = await doubleNumber(y);
         const dobleZ = await doubleNumber(z);
 
-        return `NIVELL 2 EXERCICI 1: ${dobleX + dobleY + dobleZ}`;
+        return console.log(`NIVELL 2 EXERCICI 1: ${dobleX + dobleY + dobleZ}`);
 
     } catch (error) {
         console.error(error.message)
     }
 };
 
-(async () => {
-    try {
-        const result = await sumaNumber(2, 3, 5);
-        console.log(result);
-    } catch (error) {
-        console.error(error.message);
-    }
-})();
+sumaNumber(3, 2, 5)
 
 //NIVELL 3
 
-console.log("NIVELL 3")
-EmployeeSalary(23);
-doubleNumber(4)
-doubleNumber("string")
-doubleNumber(null)
-sumaNumber(3, "3", 3)
+// console.log("NIVELL 3")
+// EmployeeSalary(23);
+// doubleNumber(4)
+// doubleNumber("string")
+// doubleNumber(null)
+// sumaNumber(3, "3", 3)
 sumaNumber(3, 3, 3)
 
 
 module.exports = {
-    EmployeeSalary
+    EmployeeSalary,
+    doubleNumber,
+    sumaNumber,
 
 }

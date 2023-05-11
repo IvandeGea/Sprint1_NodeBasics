@@ -25,10 +25,10 @@ getData()
 //Exercici 2
 
 const printMessage = (param, callback) => {
-    if (typeof param === 'string') {
-        callback('The parameter received is a string.');
+    if (typeof param === String) {
+        callback('The parameter received is a string');
     } else {
-        callback('The parameter received is not a string.');
+        callback('The parameter received is not a string');
     }
 };
 
@@ -110,5 +110,8 @@ getEmployee(1)
 
 
 module.exports = {
-    getData, getEmployee, getSalary
+    getData,
+    getEmployee,
+    getSalary,
+    printMessage
 }
