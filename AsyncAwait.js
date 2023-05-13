@@ -131,11 +131,3 @@ sumaNumber(3, 2, 5)
 // doubleNumber(null)
 // sumaNumber(3, "3", 3)
 sumaNumber(3, 3, 3)
-
-
-module.exports = {
-    EmployeeSalary,
-    doubleNumber,
-    sumaNumber,
-
-}

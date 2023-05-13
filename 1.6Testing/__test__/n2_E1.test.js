@@ -1,49 +1,65 @@
-const { sumaNumber, doubleNumber } = require("../app/n2_E1")
 
+const { sumaNumber, doubleNumber } = require('../app/n2_E1');
 
-// jest.useFakeTimers()
-// jest.spyOn(global, 'setTimeout');
-
-// test('waits 2 second before ending', () => {
-//     const { funcionAsicrona, funcionQueRetornaPormesa } = require('../archivosProbar/n2_E1')
-//     funcionAsicrona(funcionQueRetornaPormesa).then(resultado => resultado)
-
-//     expect(setTimeout).toHaveBeenCalledTimes(1);
-//     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 2000);
-// });
-
-
-
-// test('should return the sum of doubleNumber(x), doubleNumber(y) and doubleNumber(z)', async () => {
-//     console.error = jest.fn();
-//     const promise = sumaNumber(2, 3, 5);
-//     jest.advanceTimersByTime(2000);
-//     const result = await promise;
-//     expect(result).toBe('NIVELL 2 EXERCICI 1: 32');
-//     expect(console.error).not.toHaveBeenCalled();
-// });
-// });
-
-
+// Prueba para la función doubleNumber
 describe('doubleNumber', () => {
     beforeEach(() => {
         jest.useFakeTimers();
     });
 
     afterEach(() => {
+        jest.clearAllTimers();
         jest.useRealTimers();
     });
 
-    test('Debe devolver el doble de un número', async () => {
-        const result = await doubleNumber(2);
-        expect(result).toEqual(4);
+    test('debe devolver el doble del numero en 2 segundos', async () => {
+        const inputNumber = 5;
+        const expectedOutput = inputNumber * 2;
+        const resultPromise = doubleNumber(inputNumber);
+        jest.advanceTimersByTime(2000);
+        const result = await resultPromise;
+        expect(result).toEqual(expectedOutput);
+    });
 
-        // Comprobar que se ha utilizado el temporizador correcto
-        expect(setTimeout).toHaveBeenCalledTimes(1);
-        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 2000);
-    }, 20000);
+    test('debe lanzar un error si los argumentos no son numeros', async () => {
+        const inputNumber = '5';
+        const expectedErrorMessage = 'La función doubleNumber necesita un número como parámetro';
+        const resultPromise = doubleNumber(inputNumber);
+        jest.advanceTimersByTime(2000);
+        await expect(resultPromise).rejects.toThrow(expectedErrorMessage);
+    });
+});
 
-    test('Debe rechazar con un error si no se proporciona un número', async () => {
-        await expect(doubleNumber('no es un número')).rejects.toThrow('La función doubleNumber necesita un número como parámetro');
+
+
+jest.useFakeTimers();
+
+describe('sumaNumber', () => {
+    test('debe devolver la suma de doble de los argumentos', async () => {
+        const inputX = 2;
+        const inputY = 3;
+        const inputZ = 4;
+        const expectedOutput = 18;
+        jest.useFakeTimers();
+        const resultPromise = sumaNumber(inputX, inputY, inputZ);
+        jest.advanceTimersByTime(6000);
+        const result = await resultPromise;
+        expect(result).toBe(expectedOutput);
+    }, 10000);
+
+
+    test('debe lanzar un error si alguno de los argumentos no es un numero', async () => {
+        // Define input values and expected error message
+        const inputX = 2;
+        const inputY = '3';
+        const inputZ = 4;
+        const expectedErrorMessage = 'Los valores de la función sumaNumber deben ser números';
+
+        // Call sumaNumber and advance timers
+        const resultPromise = sumaNumber(inputX, inputY, inputZ);
+        jest.runAllTimers();
+
+        // Check that the result promise rejects with the correct error message
+        await expect(resultPromise).rejects.toThrow(expectedErrorMessage);
     });
 });

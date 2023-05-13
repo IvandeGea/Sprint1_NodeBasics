@@ -1,56 +1,29 @@
-//Nivell 3
+const fs = require('fs');
+const employees = JSON.parse(fs.readFileSync('app/n3_E1.json', 'utf-8')).employees;
 
-//Classe Abstracta
-function Developer(name) {
-    if (this.constructor === Developer) {
-        throw new TypeError("Can't instantiate abstract class!");
-    }
-    this.name = name;
-}
+const getEmployee = (id) => {
+    return new Promise((resolve, reject) => {
+        const employee = employees.find((e) => e.id === id);
+        if (employee) {
+            resolve(employee.name);
+        } else {
+            reject(`The ID ${id} does not exist.`);
+        }
+    });
+};
 
-Developer.prototype.getName = function () {
-    return this.name;
-}
+const getSalary = (id) => {
+    return new Promise((resolve, reject) => {
+        const employee = employees.find((e) => e.id === id);
+        if (employee) {
+            resolve(employee.salary);
+        } else {
+            reject(`No salary found for employee with ID ${id}`);
+        }
+    });
+};
 
-
-//Definim les subclasses que extenen de la classe abstracta
-class Developer {
-    constructor(name, role) {
-        this.name = name;
-        this.role = role;
-    }
-
-    getName() {
-        return this.name;
-    }
-
-    getRole() {
-        return this.role;
-    }
-}
-
-//Creem les subclases  
-class FrontEndDeveloper extends Developer {
-    constructor(name) {
-        super(name, 'Front End Developer');
-    }
-}
-
-class BackEndDeveloper extends Developer {
-    constructor(name) {
-        super(name, 'Back End Developer');
-    }
-}
-//Creem la funcio creeadora d'objectes
-function createDeveloper(type, name) {
-    switch (type) {
-        case 'front-end':
-            return new FrontEndDeveloper(name);
-        case 'back-end':
-            return new BackEndDeveloper(name);
-        default:
-            throw new Error('Invalid developer type!');
-    }
-}
-
-module.export
+module.exports = {
+    getEmployee,
+    getSalary
+};

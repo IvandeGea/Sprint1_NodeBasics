@@ -1,29 +1,39 @@
-const { getEmployee, getSalary } = require("../archivosProbar/n3_E2");
+const fs = require('fs');
+const path = require('path');
+const { getEmployee, getSalary } = require("../app/n3_E1");
 
-//test correspondientes para verificar el funcionamiento de las funciones del ejercicio Promises y Callbacks N2 E1 y Promises y Callbacks N2 E2 (getEmployee() y getSalary()).
+jest.mock('fs', () => ({
+    readFileSync: jest.fn(() => '{"employees":[{"id":1,"name":"Juan","salary":50000},{"id":2,"name":"Rosa","salary":50000}]}'),
+}));
+// Construir ruta absoluta al archivo JSON
+const filePath = path.resolve(__dirname, '..', 'app', 'n3_E1.json');
 
-describe("getEmployee", () => {
-    test('Debe rechazar la promesa con el mensaje de error correspondiente al caso null', async () => {
-        expect.assertions(1);
-        await expect(getEmployee(null)).rejects.toThrow('Error no puede ser nulo')
+describe('Tests de la funcion getEmployee ', () => {
+    test('debe devolver el nombre el empleado con el id llamado', async () => {
+        const result = await getEmployee(1);
+        expect(result).toBe('Juan');
     });
-    test(' Debe rechazar la promesa con el mensaje de error correspondiente defeult', async () => {
-        expect.assertions(1);
-        await expect(getEmployee(5)).rejects.toThrow('No se ha encontrado el empleado con ID 5')
+
+    test('debe lanzar un error si el id no existe', async () => {
+        try {
+            await getEmployee(3);
+        } catch (error) {
+            expect(error).toBe('The ID does not exist.');
+        }
     });
-    test('', async () => {
-        expect.assertions(1);
-        await expect(getEmployee("1")).rejects.toThrow('Error el id debe ser un numero')
-    })
 });
 
-describe("getSalary", () => {
-    test('', async () => {
-        expect.assertions(1);
-        await expect(getSalary(!{})).rejects.toThrow('Se debe proporcionar un objeto')
-    })
-    test('', async () => {
-        expect.assertions(1);
-        await expect(getSalary({ id: 5 })).rejects.toThrow(`No se ha encontrado el salario del empleado`)
-    })
-})
+describe('Tests de la funcion getSalary', () => {
+    test('debe devolver el salario del empleado con el id llamado', async () => {
+        const result = await getSalary(2);
+        expect(result).toBe(50000);
+    });
+
+    test('debe lanzar un error si el id no existe', async () => {
+        try {
+            await getSalary(4);
+        } catch (error) {
+            expect(error).toBe('No salary found for employee with this ID');
+        }
+    });
+});

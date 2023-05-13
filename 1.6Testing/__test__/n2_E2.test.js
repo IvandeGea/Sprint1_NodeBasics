@@ -18,7 +18,7 @@ jest.mock("../app/n2_E2", () => {
 });
 
 describe("Person", () => {
-    it("Given an empty name, when create a person with empty name, then should throw an error of empty name", () => {
+    it("Dado un nombre vacío, se debería lanzar un error ", () => {
 
         const emptyName = "";
         try {
@@ -28,7 +28,7 @@ describe("Person", () => {
             expect(error.message).toBe("Person is not defined");
         }
     });
-    it("Given a name, when Person is instanced with name, then check if it has been called with name", () => {
+    it("Dado un nombre, se debe comprobar si se ha llamado con el nombre", () => {
 
         const name = "Ivan";
         const persona = new Person(name);
@@ -36,7 +36,7 @@ describe("Person", () => {
 
     });
 
-    it("Given instance of Person, when dirNom method is called, then check if it has been called and returns the name expected to be", () => {
+    it("Cuando se llama al método dirNom, debe comprobar si se ha llamado y si devuelve el nombre esperado.", () => {
         const name = "Ivan.";
         const persona = new Person(name);
 

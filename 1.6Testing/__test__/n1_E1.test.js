@@ -1,4 +1,4 @@
-const { sumar, restar, multiplicar, dividir } = require("../app/operaciones")
+const { sumar, restar, multiplicar, dividir } = require("../app/n1_E1")
 
 /*
 Escribir una funcion que al pasarle dos numeros:
@@ -73,7 +73,7 @@ describe('Test de la función multiplicar', () => {
 /* Escribir una funcion que al pasarle dos numeros:
  -Muestre la divición de los dos numeros */
 
-describe('Test de la función multiplicar', () => {
+describe('Test de la función Dividir', () => {
     const testCases = [
         { a: 4, b: 2, expected: 2 },
         { a: 20, b: 5, expected: 4 },

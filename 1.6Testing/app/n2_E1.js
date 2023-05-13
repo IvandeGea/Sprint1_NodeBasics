@@ -1,3 +1,4 @@
+
 const doubleNumber = (number) => {
     return new Promise((resolve, reject) => {
         if (typeof number !== 'number') {
@@ -11,30 +12,15 @@ const doubleNumber = (number) => {
 };
 
 const sumaNumber = async (x, y, z) => {
-    try {
-
-        if (typeof x !== 'number' || typeof y !== 'number' || typeof z !== 'number') {
-            throw new Error("Los valores de la función sumaNumber deben ser números");
-        }
-
-        const dobleX = await doubleNumber(x);
-        const dobleY = await doubleNumber(y);
-        const dobleZ = await doubleNumber(z);
-
-        return `NIVELL 2 EXERCICI 1: ${dobleX + dobleY + dobleZ}`;
-
-    } catch (error) {
-        console.error(error.message)
+    if (typeof x !== 'number' || typeof y !== 'number' || typeof z !== 'number') {
+        throw new Error("Los valores de la función sumaNumber deben ser números");
     }
+
+    const [x2, y2, z2] = await Promise.all([doubleNumber(x), doubleNumber(y), doubleNumber(z)]);
+
+    const suma = x2 + y2 + z2;
+
+    return suma;
 };
-
-(async () => {
-    try {
-        const result = await sumaNumber(2, 3, 5);
-        console.log(result);
-    } catch (error) {
-        console.error(error.message);
-    }
-})();
 
 module.exports = { sumaNumber, doubleNumber }

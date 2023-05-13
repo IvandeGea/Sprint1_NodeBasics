@@ -14,7 +14,7 @@ Developer.prototype.getName = function () {
 
 
 //Definim les subclasses que extenen de la classe abstracta
-class Developer {
+class Develope {
     constructor(name, role) {
         this.name = name;
         this.role = role;
@@ -30,13 +30,13 @@ class Developer {
 }
 
 //Creem les subclases  
-class FrontEndDeveloper extends Developer {
+class FrontEndDeveloper extends Develope {
     constructor(name) {
         super(name, 'Front End Developer');
     }
 }
 
-class BackEndDeveloper extends Developer {
+class BackEndDeveloper extends Develope {
     constructor(name) {
         super(name, 'Back End Developer');
     }
@@ -54,5 +54,5 @@ function createDeveloper(type, name) {
 }
 
 module.exports = {
-    Developer, createDeveloper
+    Developer, createDeveloper, FrontEndDeveloper, BackEndDeveloper
 }
