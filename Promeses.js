@@ -1,5 +1,8 @@
 //Nivel 1
 //Exercici 1
+let data = ['Linux Torvalds'
+    , 'Bill Gates'
+    , 'Jeff Bezos'];
 
 function getData() {
     return new Promise((resolve, reject) => {
@@ -15,7 +18,7 @@ function getData() {
 
 getData()
     .then(() => {
-        console.log('Everything is fine.');
+        console.log(`EXERCICI 1 NIVELL 1.${data}`);
     })
     .catch((err) => {
         console.log(err.message);
@@ -25,13 +28,12 @@ getData()
 //Exercici 2
 
 const printMessage = (param, callback) => {
-    if (typeof param === String) {
-        callback('The parameter received is a string');
+    if (typeof param === 'string') {
+        callback(' Exercici 2 N1 The parameter received is a string');
     } else {
-        callback('The parameter received is not a string');
+        callback(' Exercici 2 N1 The parameter received is not a string');
     }
 };
-
 
 printMessage('Hola', console.log);
 printMessage(123, console.log);

@@ -18,21 +18,21 @@ describe('Developer', () => {
 });
 
 describe('createDeveloper', () => {
-    test('debe crear una instancia de FrontEndDeveloper', () => {
+    test('Debe crear una instancia de FrontEndDeveloper', () => {
         const developer = createDeveloper('front-end', 'Juan');
         expect(developer instanceof FrontEndDeveloper).toBe(true);
         expect(developer.getName()).toBe('Juan');
         expect(developer.getRole()).toBe('Front End Developer');
     });
 
-    test('debe crear una instancia de BackEndDeveloper', () => {
+    test('Debe crear una instancia de BackEndDeveloper', () => {
         const developer = createDeveloper('back-end', 'Alba');
         expect(developer instanceof BackEndDeveloper).toBe(true);
         expect(developer.getName()).toBe('Alba');
         expect(developer.getRole()).toBe('Back End Developer');
     });
 
-    test('debe mandar un error si el role no es correcto', () => {
+    test('Debe mandar un error si el role no es correcto', () => {
         expect(() => {
             createDeveloper('full-stack', 'Ivan');
         }).toThrowError(new Error('Invalid developer type!'));
